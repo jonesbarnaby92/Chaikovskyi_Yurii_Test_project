@@ -1,1 +1,1 @@
-Yurii
+Yuri
