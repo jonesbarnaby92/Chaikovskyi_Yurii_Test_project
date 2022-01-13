@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.2 (Python 3.8.10 on linux)" generated="20220113 13:22:31.139" rpa="false" schemaversion="2">
+<suite id="s1" name="Rf" source="/home/yurii/ChaikovskyiYurii/Chaikovskyi_Yurii_Test_project/rf">
+<suite id="s1-s1" name="APITestingresources" source="/home/yurii/ChaikovskyiYurii/Chaikovskyi_Yurii_Test_project/rf/APITestingresources.robot">
+<test id="s1-s1-t1" name="AutoAuthorization booking test">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${REQUEST_AUTH_BODY}</var>
+<arg>username=admin</arg>
+<arg>password=password123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220113 13:22:31.242" level="INFO">${REQUEST_AUTH_BODY} = {'username': 'admin', 'password': 'password123'}</msg>
+<status status="PASS" starttime="20220113 13:22:31.242" endtime="20220113 13:22:31.242"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${HEADER_AUTH}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220113 13:22:31.243" level="INFO">${HEADER_AUTH} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20220113 13:22:31.243" endtime="20220113 13:22:31.243"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>Auth_createToken</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220113 13:22:31.243" level="INFO">Creating Session using : alias=Auth_createToken, url=https://restful-booker.herokuapp.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220113 13:22:31.243" endtime="20220113 13:22:31.243"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${RESPONSE_AUTH}</var>
+<arg>Auth_createToken</arg>
+<arg>${BOOKING_AUTH_ENDPOINT}</arg>
+<arg>json=${REQUEST_AUTH_BODY}</arg>
+<arg>headers=${HEADER_AUTH}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20220113 13:22:31.822" level="INFO">POST Request : url=https://restful-booker.herokuapp.com/auth 
+ path_url=/auth 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '48'} 
+ body=b'{"username": "admin", "password": "password123"}' 
+ </msg>
+<msg timestamp="20220113 13:22:31.822" level="INFO">POST Response : url=https://restful-booker.herokuapp.com/auth 
+ status=200, reason=OK 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '27', 'Etag': 'W/"1b-FAXbq37VcVp/EP5TFePpxXgclfo"', 'Date': 'Thu, 13 Jan 2022 11:22:31 GMT', 'Via': '1.1 vegur'} 
+ body={"token":"0c8f22d88fcbd31"} 
+ </msg>
+<msg timestamp="20220113 13:22:31.822" level="INFO">/home/yurii/testerli-study/rf-selenium/lib/python3.8/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20220113 13:22:31.822" level="INFO">${RESPONSE_AUTH} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220113 13:22:31.243" endtime="20220113 13:22:31.822"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${TOKEN}</var>
+<arg>${RESPONSE_AUTH.json()}</arg>
+<arg>$.token</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20220113 13:22:31.839" level="INFO">${TOKEN} = ['0c8f22d88fcbd31']</msg>
+<status status="PASS" starttime="20220113 13:22:31.822" endtime="20220113 13:22:31.839"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${TOKEN[0]}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20220113 13:22:31.839" endtime="20220113 13:22:31.839"/>
+</kw>
+<status status="PASS" starttime="20220113 13:22:31.242" endtime="20220113 13:22:31.840"/>
+</test>
+<test id="s1-s1-t2" name="Create bookingt test">
+<kw name="Load JSON From File" library="JSONLibrary">
+<var>${REQUEST_BODY_CREATE_BOOKING}</var>
+<arg>rf/databooking.json</arg>
+<doc>Load JSON from file.</doc>
+<msg timestamp="20220113 13:22:31.840" level="ERROR">JSON file: rf/databooking.json not found</msg>
+<msg timestamp="20220113 13:22:31.841" level="FAIL">OSError</msg>
+<status status="FAIL" starttime="20220113 13:22:31.840" endtime="20220113 13:22:31.841"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${HEADER_CREATE_BOOKING}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20220113 13:22:31.841" endtime="20220113 13:22:31.841"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>create_booking</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="NOT RUN" starttime="20220113 13:22:31.841" endtime="20220113 13:22:31.841"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${RESPONSE_CREATE_BOOKING}</var>
+<arg>create_booking</arg>
+<arg>${CREATE_BOOKING_ENDPOINT}</arg>
+<arg>json=${REQUEST_BODY_CREATE_BOOKING}</arg>
+<arg>headers=${HEADER_CREATE_BOOKING}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" starttime="20220113 13:22:31.841" endtime="20220113 13:22:31.841"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${ID_USER_BOKING}</var>
+<arg>${RESPONSE_CREATE_BOOKING.json()}</arg>
+<arg>$.bookingid</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<status status="NOT RUN" starttime="20220113 13:22:31.841" endtime="20220113 13:22:31.841"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${ID_USER_BOKING}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20220113 13:22:31.841" endtime="20220113 13:22:31.841"/>
+</kw>
+<status status="FAIL" starttime="20220113 13:22:31.840" endtime="20220113 13:22:31.841">OSError</status>
+</test>
+<status status="FAIL" starttime="20220113 13:22:31.151" endtime="20220113 13:22:31.841"/>
+</suite>
+<status status="FAIL" starttime="20220113 13:22:31.140" endtime="20220113 13:22:31.842"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="1" skip="0" id="s1" name="Rf">Rf</stat>
+<stat pass="1" fail="1" skip="0" id="s1-s1" name="APITestingresources">Rf.APITestingresources</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20220113 13:22:31.840" level="ERROR">JSON file: rf/databooking.json not found</msg>
+</errors>
+</robot>
