@@ -8,7 +8,7 @@ Demonstration test project
 
 
 * **UI testing:**
- * 1. Created several test cases to test the feedback form on the site:
+ * 1.Created several test cases to test the feedback form on the site:
 * Test cases [https://docs.google.com/spreadsheets/d/12cU2-cyk33e-4cxNM0EQowAjwIwUEZLWhZUtjFDkhTw/edit?usp=sharing]
  * 2.Created an automation to check the  of the feedback form using Cypress
 * Automation Cypress.io [https://github.com/jonesbarnaby92/Chaikovskyi_Yurii_Test_project/tree/main/cypress]
