@@ -17,7 +17,7 @@ Demonstration test project
 * **API testing:**
  * 1.Created test cases for testing sending registration requests for a valid user and user authorization test with  wrong data 
 * Test cases [https://docs.google.com/spreadsheets/d/1mk_zJzXrgezvq1PInv3Wzb-ugugjp0aI3y3bkhivU0M/edit?usp=sharing]
- * 2. Created an automation to check the booking service by a valid user
+ * 2.Created an automation to check the booking service by a valid user
 * Automation Robot Framework [https://github.com/jonesbarnaby92/Chaikovskyi_Yurii_Test_project/tree/main/rf]
 	
 
